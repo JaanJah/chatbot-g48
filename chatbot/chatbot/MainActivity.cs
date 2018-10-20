@@ -28,9 +28,11 @@ namespace chatbot
             var list = FindViewById<ListView>(Resource.Id.list);
             var message = FindViewById<EditText>(Resource.Id.textInputEditText1);
             convert.Add(message.Text);
-            Properties.ReceivedMessages = convert.ToArray();
+            Properties.SentMessages = convert.ToArray();
+            convert2.Add("");
+            Properties.ReceivedMessages = convert2.ToArray();
             list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
-            //SetContentView(Resource.Layout.test);
+            list.ScrollTo(-1, -1);
         }
 
         private async void GetDataAndAssignToText()
@@ -39,8 +41,12 @@ namespace chatbot
             //Doesn't call any of these statements below, means something wrong with Core.GetData() function.
             if (propertyData != null)
             {
+                var list = FindViewById<ListView>(Resource.Id.list);
                 convert2.Add(propertyData.Message);
                 Properties.ReceivedMessages = convert2.ToArray();
+                convert.Add("");
+                Properties.SentMessages = convert.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
             else
             {

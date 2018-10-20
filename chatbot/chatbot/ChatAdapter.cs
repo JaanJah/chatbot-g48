@@ -20,8 +20,8 @@ namespace chatbot
         public ChatAdapter(Activity context, string[] sent, string[] received) : base()
         {
             this.context = context;
-            this.sent = new string[] {"test1", "test2", "test3", "test4" };
-            this.received = new string[] { "test1", "test2", "test3", "test4" };
+            this.sent = sent;
+            this.received = received;
         }
 
         public override string this[int position]
