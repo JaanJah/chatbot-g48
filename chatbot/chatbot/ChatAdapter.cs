@@ -14,20 +14,22 @@ namespace chatbot
 {
     class ChatAdapter : BaseAdapter<string>
     {
-        string[] items;
+        string[] sent;
+        string[] received;
         Activity context;
-        public ChatAdapter(Activity context, string[] items) : base()
+        public ChatAdapter(Activity context, List<string> sent, List<string> received) : base()
         {
             this.context = context;
-            this.items = items;
+            this.sent = sent.ToArray();
+            this.received = received.ToArray();
         }
 
         public override string this[int position]
         {
-            get { return items[position]; }
+            get { return sent[position]; }
         }
 
-        public override int Count { get { return items.Length; } }
+        public override int Count { get { return sent.Length; } }
 
         public override long GetItemId(int position)
         {
@@ -39,7 +41,8 @@ namespace chatbot
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
                 view = context.LayoutInflater.Inflate(Resource.Layout.activity_main, null);
-            
+            view.FindViewById<TextView>(Resource.Id.textView1).Text = sent[position];
+            view.FindViewById<TextView>(Resource.Id.botMessage).Text = received[position];
             return view;
         }
     }
