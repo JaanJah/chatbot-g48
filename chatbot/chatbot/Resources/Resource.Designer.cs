@@ -3113,10 +3113,7 @@ namespace chatbot
 			public const int support_simple_spinner_dropdown_item = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int test = 2130968637;
-			
-			// aapt resource value: 0x7f04003e
-			public const int tooltip = 2130968638;
+			public const int tooltip = 2130968637;
 			
 			static Layout()
 			{
