@@ -18,5 +18,8 @@ namespace chatbot
         //Properties of JSON here
         [JsonProperty("message")]
         public string Message { get; set; }
+
+        public static string[] ReceivedMessages = { };
+        public static string[] SentMessages = { };
     }
 }
