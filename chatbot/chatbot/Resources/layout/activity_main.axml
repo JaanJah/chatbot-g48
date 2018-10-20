@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	<ScrollView
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/scrollView1" >
 	<LinearLayout
 		android:orientation="vertical"
 		android:minWidth="25px"
@@ -11,31 +17,11 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/linearLayout1" >
-		<LinearLayout
-			android:orientation="horizontal"
-			android:minWidth="25px"
-			android:minHeight="25px"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:id="@+id/linearLayout3" >
-			<TextView
-				android:text="Large Text"
-				android:textAppearance="?android:attr/textAppearanceLarge"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:id="@+id/botMessage" />
-			<TextView
-				android:text="Large   Text"
-				android:textAppearance="?android:attr/textAppearanceLarge"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:textAlignment="viewEnd"
-				android:gravity="fill_horizontal|center_vertical"
-				android:id="@+id/textView1" />
-		</LinearLayout>
 		<ListView android:id="@+id/list"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"/>
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+	</ScrollView>
 	</LinearLayout>
 	<LinearLayout
 		android:orientation="horizontal"

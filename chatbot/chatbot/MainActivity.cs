@@ -32,7 +32,7 @@ namespace chatbot
             convert2.Add("");
             Properties.ReceivedMessages = convert2.ToArray();
             list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
-            list.ScrollTo(-1, -1);
+            var scroll = FindViewById<ScrollView>(Resource.Id.scrollView1);
         }
 
         private async void GetDataAndAssignToText()

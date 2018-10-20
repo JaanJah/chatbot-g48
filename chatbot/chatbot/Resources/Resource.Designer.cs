@@ -2426,14 +2426,14 @@ namespace chatbot
 			// aapt resource value: 0x7f080057
 			public const int blocking = 2131230807;
 			
-			// aapt resource value: 0x7f08008d
-			public const int botMessage = 2131230861;
+			// aapt resource value: 0x7f080091
+			public const int botMessage = 2131230865;
 			
 			// aapt resource value: 0x7f08003d
 			public const int bottom = 2131230781;
 			
-			// aapt resource value: 0x7f080092
-			public const int button1 = 2131230866;
+			// aapt resource value: 0x7f08008f
+			public const int button1 = 2131230863;
 			
 			// aapt resource value: 0x7f080063
 			public const int buttonPanel = 2131230819;
@@ -2588,14 +2588,14 @@ namespace chatbot
 			// aapt resource value: 0x7f08008b
 			public const int linearLayout1 = 2131230859;
 			
+			// aapt resource value: 0x7f08008d
+			public const int linearLayout2 = 2131230861;
+			
 			// aapt resource value: 0x7f080090
-			public const int linearLayout2 = 2131230864;
+			public const int linearLayout3 = 2131230864;
 			
 			// aapt resource value: 0x7f08008c
-			public const int linearLayout3 = 2131230860;
-			
-			// aapt resource value: 0x7f08008f
-			public const int list = 2131230863;
+			public const int list = 2131230860;
 			
 			// aapt resource value: 0x7f08001d
 			public const int listMode = 2131230749;
@@ -2795,8 +2795,8 @@ namespace chatbot
 			// aapt resource value: 0x7f08001b
 			public const int text2 = 2131230747;
 			
-			// aapt resource value: 0x7f080091
-			public const int textInputEditText1 = 2131230865;
+			// aapt resource value: 0x7f08008e
+			public const int textInputEditText1 = 2131230862;
 			
 			// aapt resource value: 0x7f08006a
 			public const int textSpacerNoButtons = 2131230826;
@@ -2804,8 +2804,8 @@ namespace chatbot
 			// aapt resource value: 0x7f080069
 			public const int textSpacerNoTitle = 2131230825;
 			
-			// aapt resource value: 0x7f08008e
-			public const int textView1 = 2131230862;
+			// aapt resource value: 0x7f080092
+			public const int textView1 = 2131230866;
 			
 			// aapt resource value: 0x7f0800a0
 			public const int text_input_password_toggle = 2131230880;
