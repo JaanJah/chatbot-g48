@@ -57,6 +57,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatAdapter.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="MainActivity.cs" />
