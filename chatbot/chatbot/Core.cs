@@ -17,14 +17,20 @@ namespace chatbot
 {
     public class Core
     {
+        public static bool lastMessage = false;
         public static async Task<Properties> GetData(string sText)
         {
+            
             dynamic results = await DataService.GetDataFromService(sText);
             //ask properties from results
             if (results[0] != null)
             {
                 Properties property = new Properties();
                 property.Message = (string)results[0]["text"];
+                if (property.Message == "Goodbye")
+                {
+                    lastMessage = true;
+                }
                 return property;
             }
             else

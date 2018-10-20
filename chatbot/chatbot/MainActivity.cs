@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using System.Drawing;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace chatbot
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "AISee", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/logo_icon3")]
     public class MainActivity : AppCompatActivity
     {
         public int firstMessage = 0;
@@ -50,6 +51,7 @@ namespace chatbot
         }
         private async void SendInputBtn_Click(object sender, System.EventArgs e)
         {
+            inputText.Text = "";
             var sText = inputText.Text;
             //Console.WriteLine(sText);
             Properties propertyData = await Core.GetData(sText);
@@ -62,18 +64,5 @@ namespace chatbot
                 FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
             }
         }
-
-        //private async void GetDataAndAssignToText()
-        //{
-        //    Properties propertyData = await Core.GetData();
-        //    if (propertyData != null)
-        //    {
-        //        FindViewById<TextView>(Resource.Id.botMessage).Text = propertyData.Message;
-        //    }
-        //    else
-        //    {
-        //        FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
-        //    }
-        //}
     }
 }
