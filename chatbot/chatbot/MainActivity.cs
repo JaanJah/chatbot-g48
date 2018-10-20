@@ -29,7 +29,6 @@ namespace chatbot
                 firstMessage++;
                 hiddenFirstMessage();
             }
-            hiddenFirstMessage();
             sendInputBtn.Click += SendInputBtn_Click;
         }
 

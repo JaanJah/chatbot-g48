@@ -14,7 +14,7 @@
 		android:minHeight="25px"
 		android:id="@+id/botMessage" />
 	<android.support.design.widget.TextInputEditText
-		android:text=" "
+		android:inputType="text"
 		android:layout_width="150dp"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/botMessage"
