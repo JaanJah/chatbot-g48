@@ -15,5 +15,6 @@ namespace chatbot
     public class Properties
     {
         //Properties of JSON here
+        public string Text { get; set; } = " ";
     }
 }

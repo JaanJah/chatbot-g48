@@ -17,7 +17,7 @@ namespace chatbot
     {
         public static async Task<Properties> GetData()
         {
-            string queryString = "Request data from this address";
+            string queryString = "http://10.201.113.49:5005/webhooks/rest/webhook";
 
             dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
             //ask properties from results
@@ -25,6 +25,8 @@ namespace chatbot
             if (results["property"] != null)
             {
                 Properties property = new Properties();
+
+                property.Text = (string)results["text"];
                 //property asks properties from Propertis class
                 return property;
             }
