@@ -16,7 +16,7 @@ namespace chatbot
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            //var chatField = FindViewById<EditText>();
+            //var textField = FindViewById<EditText>(Resource.Id.editText1);
         }
     }
 }
