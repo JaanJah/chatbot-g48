@@ -17,11 +17,11 @@ namespace chatbot
         string[] sent;
         string[] received;
         Activity context;
-        public ChatAdapter(Activity context, List<string> sent, List<string> received) : base()
+        public ChatAdapter(Activity context, string[] sent, string[] received) : base()
         {
             this.context = context;
-            this.sent = sent.ToArray();
-            this.received = received.ToArray();
+            this.sent = new string[] {"test1", "test2", "test3", "test4" };
+            this.received = new string[] { "test1", "test2", "test3", "test4" };
         }
 
         public override string this[int position]
@@ -40,7 +40,7 @@ namespace chatbot
         {
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
-                view = context.LayoutInflater.Inflate(Resource.Layout.activity_main, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.CustomAdapter, null);
             view.FindViewById<TextView>(Resource.Id.textView1).Text = sent[position];
             view.FindViewById<TextView>(Resource.Id.botMessage).Text = received[position];
             return view;

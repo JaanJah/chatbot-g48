@@ -4,12 +4,15 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace chatbot
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : ListActivity
+    public class MainActivity : Activity
     {
+        private List<string> convert = new List<string>();
+        private List<string> convert2 = new List<string>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -22,11 +25,12 @@ namespace chatbot
 
         private void SendButton_Click(object sender, System.EventArgs e)
         {
+            var list = FindViewById<ListView>(Resource.Id.list);
             var message = FindViewById<EditText>(Resource.Id.textInputEditText1);
-            Properties.ReceivedMessages.Add("test");
-            Properties.SentMessages.Add(message.Text);
-            var UpdateChat = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
-            SetContentView(Resource.Layout.test);
+            convert.Add(message.Text);
+            Properties.ReceivedMessages = convert.ToArray();
+            list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
+            //SetContentView(Resource.Layout.test);
         }
 
         private async void GetDataAndAssignToText()
@@ -35,8 +39,8 @@ namespace chatbot
             //Doesn't call any of these statements below, means something wrong with Core.GetData() function.
             if (propertyData != null)
             {
-                //FindViewById<TextView>(Resource.Id.botMessage).Text = propertyData.Message;
-                Properties.ReceivedMessages.Add(propertyData.Message);
+                convert2.Add(propertyData.Message);
+                Properties.ReceivedMessages = convert2.ToArray();
             }
             else
             {

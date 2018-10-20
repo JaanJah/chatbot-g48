@@ -33,7 +33,7 @@
 				android:gravity="fill_horizontal|center_vertical"
 				android:id="@+id/textView1" />
 		</LinearLayout>
-		<ListView android:id="@android:id/list"
+		<ListView android:id="@+id/list"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"/>
 	</LinearLayout>
