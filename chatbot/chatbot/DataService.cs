@@ -17,7 +17,7 @@ namespace chatbot
     class DataService
     {
 
-        public static async Task<dynamic> HandleAsyncRequest(string queryString)
+        public static async Task<dynamic> GetDataFromService(string queryString)
         {
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(queryString);
