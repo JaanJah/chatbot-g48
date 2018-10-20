@@ -23,7 +23,6 @@ namespace chatbot
             //ask properties from results
             if (results[0] != null)
             {
-                //System.ArgumentException: Accessed JArray values with invalid key value: "property".Int32 array index expected.
                 Properties property = new Properties();
                 property.Message = (string)results[0]["text"];
                 return property;

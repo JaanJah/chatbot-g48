@@ -23,11 +23,11 @@ namespace chatbot
             //Doesn't call any of these statements below, means something wrong with Core.GetData() function.
             if (propertyData != null)
             {
-                FindViewById<TextView>(Resource.Id.textView1).Text = propertyData.Message;
+                FindViewById<TextView>(Resource.Id.botMessage).Text = propertyData.Message;
             }
             else
             {
-                FindViewById<TextView>(Resource.Id.textView1).Text = "Couldn't get property data.";
+                FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
             }
         }
     }
