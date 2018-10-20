@@ -14,22 +14,32 @@ using Android.Widget;
 
 namespace chatbot
 {
-    class DataService
+    public class DataService
     {
-
-        public static async Task<dynamic> GetDataFromService(string queryString)
+        public static async Task<dynamic> GetDataFromService()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync(queryString);
+            var payload = new Properties
+            {
+                Message = "hi"
+            };
+            var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(payload));
+            var url = "http://10.201.113.49:5005/webhooks/rest/webhook";
+           
+            //Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'Newtonsoft.Json.JsonObjectAttribute' does not contain a definition for 'Data'
+            var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
             dynamic data = null;
-
-            if (response != null)
+            using (client)
             {
-                string json = response.Content.ReadAsStringAsync().Result;
-                data = JsonConvert.DeserializeObject(json);
+                var httpResponse = await client.PostAsync(url, content);
+                if (httpResponse.Content != null)
+                {
+                    var responseContent = await httpResponse.Content.ReadAsStringAsync();
+                    data = JsonConvert.DeserializeObject(responseContent);
+                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                }
             }
-
             return data;
 
         }

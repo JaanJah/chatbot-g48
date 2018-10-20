@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 using Android.App;
 using Android.Content;
@@ -10,6 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json.Linq;
 
 namespace chatbot
 {
@@ -17,17 +19,13 @@ namespace chatbot
     {
         public static async Task<Properties> GetData()
         {
-            string queryString = "http://10.201.113.49:5005/webhooks/rest/webhook";
-
-            dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
+            dynamic results = await DataService.GetDataFromService();
             //ask properties from results
-
-            if (results["property"] != null)
+            if (results[0] != null)
             {
+                //System.ArgumentException: Accessed JArray values with invalid key value: "property".Int32 array index expected.
                 Properties property = new Properties();
-
-                property.Text = (string)results["text"];
-                //property asks properties from Propertis class
+                property.Message = (string)results[0]["text"];
                 return property;
             }
             else

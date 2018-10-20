@@ -9,12 +9,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace chatbot
 {
     public class Properties
     {
         //Properties of JSON here
-        public string Text { get; set; } = " ";
+        [JsonProperty("message")]
+        public string Message { get; set; }
     }
 }

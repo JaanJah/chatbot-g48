@@ -14,6 +14,21 @@ namespace chatbot
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            GetDataAndAssignToText();
+        }
+
+        private async void GetDataAndAssignToText()
+        {
+            Properties propertyData = await Core.GetData();
+            //Doesn't call any of these statements below, means something wrong with Core.GetData() function.
+            if (propertyData != null)
+            {
+                FindViewById<TextView>(Resource.Id.textView1).Text = propertyData.Message;
+            }
+            else
+            {
+                FindViewById<TextView>(Resource.Id.textView1).Text = "Couldn't get property data.";
+            }
         }
     }
 }
