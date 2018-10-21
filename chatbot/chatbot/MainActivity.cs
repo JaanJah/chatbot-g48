@@ -19,6 +19,7 @@ namespace chatbot
     {
         public int firstMessage = 0;
         EditText inputText;
+        ImageButton sendInputBtn;
         string rndSender;
         private List<string> convert = new List<string>();
         private List<string> convert2 = new List<string>();
@@ -28,9 +29,8 @@ namespace chatbot
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            var sendInputBtn = FindViewById<Button>(Resource.Id.sendInputBtn);
+            sendInputBtn = FindViewById<ImageButton>(Resource.Id.sendInputBtn);
             inputText = FindViewById<EditText>(Resource.Id.inputMessage);
-            //GetDataAndAssignToText();
             if (firstMessage == 0)
             {
                 rndSender = RandomString(5);
@@ -72,6 +72,7 @@ namespace chatbot
         }
         private async void SendInputBtn_Click(object sender, System.EventArgs e)
         {
+            sendInputBtn.SetImageResource(Resource.Drawable.nupp1_2);
             var list = FindViewById<ListView>(Resource.Id.list);
             var message = FindViewById<EditText>(Resource.Id.inputMessage);
             var sText = inputText.Text;
@@ -84,6 +85,7 @@ namespace chatbot
                 convert.Add(sText);
                 Properties.SentMessages = convert.ToArray();
                 list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
+                sendInputBtn.SetImageResource(Resource.Drawable.nupp2_2);
             }
             else
             {
