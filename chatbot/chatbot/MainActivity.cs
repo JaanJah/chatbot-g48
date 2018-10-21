@@ -22,6 +22,8 @@ namespace chatbot
         string rndSender;
         private List<string> convert = new List<string>();
         private List<string> convert2 = new List<string>();
+        // true = human, false = bot response
+        private List<bool> convertSender = new List<bool>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -53,20 +55,24 @@ namespace chatbot
             if (propertyData != null)
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
-                convert2.Add(propertyData.Message);
-                Properties.ReceivedMessages = convert2.ToArray();
                 convert.Add("");
+                convert2.Add(propertyData.Message);
+                convertSender.Add(false);
+                Properties.ReceivedMessages = convert2.ToArray();
                 Properties.SentMessages = convert.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
+                Properties.SenderArray = convertSender.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
             }
             else
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
-                convert2.Add("Couldn't get property data");
-                Properties.ReceivedMessages = convert2.ToArray();
                 convert.Add("");
+                convert2.Add("Couldn't get property data");
+                convertSender.Add(false);
+                Properties.ReceivedMessages = convert2.ToArray();
                 Properties.SentMessages = convert.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
+                Properties.SenderArray = convertSender.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
             }
             inputText.Text = "";
         }
@@ -76,18 +82,33 @@ namespace chatbot
             var message = FindViewById<EditText>(Resource.Id.inputMessage);
             var sText = inputText.Text;
             inputText.Text = "";
+            convert.Add(sText);
+            convert2.Add("");
+            convertSender.Add(true);
+            Properties.SentMessages = convert.ToArray();
+            Properties.ReceivedMessages = convert2.ToArray();
+            Properties.SenderArray = convertSender.ToArray();
+            list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
             Properties propertyData = await Core.GetData(sText, rndSender);
             if (propertyData != null)
             {
+                convert.Add("");
                 convert2.Add(propertyData.Message);
+                convertSender.Add(false);
                 Properties.ReceivedMessages = convert2.ToArray();
-                convert.Add(sText);
                 Properties.SentMessages = convert.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
+                Properties.SenderArray = convertSender.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
             }
             else
             {
-                FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
+                convertSender.Add(false);
+                convert2.Add("Couldn't get property data");
+                convert.Add("");
+                Properties.SentMessages = convert.ToArray();
+                Properties.ReceivedMessages = convert2.ToArray();
+                Properties.SenderArray = convertSender.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
             }
         }
     }
