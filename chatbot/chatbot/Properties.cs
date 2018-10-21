@@ -23,5 +23,7 @@ namespace chatbot
         public string Sender { get; set; }
         public static string[] ReceivedMessages = { };
         public static string[] SentMessages = { };
+
+
     }
 }

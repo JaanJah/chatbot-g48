@@ -19,6 +19,7 @@ namespace chatbot
     {
         public int firstMessage = 0;
         EditText inputText;
+        string rndSender;
         private List<string> convert = new List<string>();
         private List<string> convert2 = new List<string>();
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,16 +33,23 @@ namespace chatbot
             //GetDataAndAssignToText();
             if (firstMessage == 0)
             {
+                rndSender = RandomString(5);
                 HiddenFirstMessage();
             }
             sendInputBtn.Click += SendInputBtn_Click;
         }
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         private async void HiddenFirstMessage()
         {
             firstMessage++;
-            //inputText.Text = "hi";
             var sText = "hi";
-            Properties propertyData = await Core.GetData(sText);
+            Properties propertyData = await Core.GetData(sText, rndSender);
             if (propertyData != null)
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
@@ -68,7 +76,7 @@ namespace chatbot
             var message = FindViewById<EditText>(Resource.Id.inputMessage);
             var sText = inputText.Text;
             inputText.Text = "";
-            Properties propertyData = await Core.GetData(sText);
+            Properties propertyData = await Core.GetData(sText, rndSender);
             if (propertyData != null)
             {
                 convert2.Add(propertyData.Message);
