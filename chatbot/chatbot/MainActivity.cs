@@ -38,7 +38,6 @@ namespace chatbot
         private async void GetDataAndAssignToText()
         {
             Properties propertyData = await Core.GetData();
-            //Doesn't call any of these statements below, means something wrong with Core.GetData() function.
             if (propertyData != null)
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
@@ -50,7 +49,12 @@ namespace chatbot
             }
             else
             {
-                FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
+                var list = FindViewById<ListView>(Resource.Id.list);
+                convert2.Add("Couldn't get property data");
+                Properties.ReceivedMessages = convert2.ToArray();
+                convert.Add("");
+                Properties.SentMessages = convert.ToArray();
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
         }
     }
