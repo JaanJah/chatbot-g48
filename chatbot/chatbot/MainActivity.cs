@@ -40,7 +40,7 @@ namespace chatbot
         {
             firstMessage++;
             //inputText.Text = "hi";
-            var sText = "hi123";
+            var sText = "hi";
             Properties propertyData = await Core.GetData(sText);
             if (propertyData != null)
             {
