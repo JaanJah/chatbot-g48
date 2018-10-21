@@ -34,11 +34,11 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="0"
-			android:id="@+id/textInputEditText1" />
+			android:id="@+id/inputMessage" />
 		<Button
 			android:text="Button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/button1"/>
+			android:id="@+id/sendInputBtn" />
 	</LinearLayout>
 </RelativeLayout>

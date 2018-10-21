@@ -16,17 +16,23 @@ namespace chatbot
 {
     public class DataService
     {
-        public static async Task<dynamic> GetDataFromService()
+        public static async Task<dynamic> GetDataFromService(string sText)
         {
-            HttpClient client = new HttpClient();
             var payload = new Properties
             {
-                Message = "hi"
+                Message = sText
             };
+            HttpClient client = new HttpClient();
+            if(Core.lastMessage == true)
+            {
+                payload = new Properties
+                {
+                    Message = "/LASTREQUEST"
+                };
+            }
+
             var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(payload));
             var url = "http://10.201.113.130:5007/webhooks/rest/webhook";
-           
-            //Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'Newtonsoft.Json.JsonObjectAttribute' does not contain a definition for 'Data'
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
             dynamic data = null;
@@ -37,11 +43,9 @@ namespace chatbot
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
                     data = JsonConvert.DeserializeObject(responseContent);
-                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
                 }
             }
             return data;
-
         }
     }
 }
