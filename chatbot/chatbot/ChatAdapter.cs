@@ -45,19 +45,23 @@ namespace chatbot
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomAdapter, null);
-            view.FindViewById<TextView>(Resource.Id.textView1).Text = sent[position] + "  ";
+            view.FindViewById<TextView>(Resource.Id.textView1).Text = "  " + sent[position] + "  ";
             view.FindViewById<TextView>(Resource.Id.botMessage).Text = "  " + received[position];
-            
+            LinearLayout.LayoutParams mp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.FillParent);
+            LinearLayout.LayoutParams wc = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.FillParent);
             if (sender[position] == true)
             {
                 view.FindViewById<TextView>(Resource.Id.textView1).SetBackgroundColor(Android.Graphics.Color.GhostWhite);
                 //view.FindViewById<TextView>(Resource.Id.botMessage).SetBackgroundColor(Android.Graphics.Color.GhostWhite);
-                //view.FindViewById<TextView>(Resource.Id.textView1).LayoutParameters = view.LayoutParameters.
+                view.FindViewById<TextView>(Resource.Id.textView1).LayoutParameters = wc;
+                view.FindViewById<TextView>(Resource.Id.botMessage).LayoutParameters = wc;
             }
             if (sender[position] == false)
             {
                 //view.FindViewById<TextView>(Resource.Id.textView1).SetBackgroundColor(Android.Graphics.Color.LightBlue);
-                view.FindViewById<TextView>(Resource.Id.botMessage).SetBackgroundColor(Android.Graphics.Color.LightBlue);
+                view.FindViewById<TextView>(Resource.Id.botMessage).SetBackgroundColor(Android.Graphics.Color.ParseColor("#a5c7ff"));
+                view.FindViewById<TextView>(Resource.Id.textView1).LayoutParameters = wc;
+                view.FindViewById<TextView>(Resource.Id.botMessage).LayoutParameters = mp;
             }
             //view.FindViewById<ImageButton>(Resource.Id.sendInputBtn).SetBackgroundColor(Android.Graphics.Color.Transparent);
             return view;
