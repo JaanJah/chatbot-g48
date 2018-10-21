@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@drawable/mobile_1081x1920_2BACK">
+	<LinearLayout
+		android:orientation="vertical"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="70.0dp"
+		android:layout_marginLeft="40.0dp"
+		android:layout_marginRight="40.0dp"
+		android:id="@+id/linearLayout1" >
+		<ListView android:id="@+id/list"
+			android:layout_width="fill_parent"
+			android:layout_height="match_parent"
+			android:transcriptMode="alwaysScroll"
+			android:stackFromBottom="true"
+			android:layout_weight="1"/>
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center|bottom"
+		android:id="@+id/linearLayout2" >
+		<EditText
+			android:minWidth="600px"
+			android:maxWidth="600px"
+			android:maxHeight="350px"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="0"
+			android:id="@+id/inputMessage" />
+		<ImageButton
+			android:src="@drawable/nupp2_2"
+			android:layout_width="wrap_content"
+			android:gravity="center|right"
+			android:padding="0dp"
+			android:layout_height="wrap_content"
+			android:padding="0dp"
+			android:id="@+id/sendInputBtn"/>
+	</LinearLayout>
+</RelativeLayout>
