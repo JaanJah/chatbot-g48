@@ -13,15 +13,21 @@
 		android:stackFromBottom="true"
 		android:id="@+id/linearLayout3" >
 		<TextView
+			android:text="test"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:id="@+id/botMessage" />
+			android:layout_alignLeft="@+id/imageView1"
+			android:layout_alignRight="@+id/imageView1"
+			android:id="@+id/botMessage" 
+			android:background="#3f89ff"/>
 		<TextView
+			android:text="test"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:textAlignment="viewEnd"
-			android:id="@+id/textView1" />
+			android:id="@+id/textView1" 
+			android:background="#f4f8ff"/>
 	</LinearLayout>
 </LinearLayout>

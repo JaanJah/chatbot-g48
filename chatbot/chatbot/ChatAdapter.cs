@@ -16,12 +16,14 @@ namespace chatbot
     {
         string[] sent;
         string[] received;
+        bool[] sender;
         Activity context;
-        public ChatAdapter(Activity context, string[] sent, string[] received) : base()
+        public ChatAdapter(Activity context, string[] sent, string[] received, bool[] sender) : base()
         {
             this.context = context;
             this.sent = sent;
             this.received = received;
+            this.sender = sender;
         }
 
         public override string this[int position]
@@ -43,6 +45,16 @@ namespace chatbot
                 view = context.LayoutInflater.Inflate(Resource.Layout.CustomAdapter, null);
             view.FindViewById<TextView>(Resource.Id.textView1).Text = sent[position];
             view.FindViewById<TextView>(Resource.Id.botMessage).Text = received[position];
+            if (sender[position] == true)
+            {
+                view.FindViewById<TextView>(Resource.Id.textView1).SetBackgroundColor(Android.Graphics.Color.White);
+                view.FindViewById<TextView>(Resource.Id.botMessage).SetBackgroundColor(Android.Graphics.Color.White);
+            }
+            if (sender[position] == false)
+            {
+                view.FindViewById<TextView>(Resource.Id.textView1).SetBackgroundColor(Android.Graphics.Color.BlueViolet);
+                view.FindViewById<TextView>(Resource.Id.botMessage).SetBackgroundColor(Android.Graphics.Color.BlueViolet);
+            }
             return view;
         }
     }
