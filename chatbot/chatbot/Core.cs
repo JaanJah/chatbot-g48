@@ -18,10 +18,9 @@ namespace chatbot
     public class Core
     {
         public static bool lastMessage = false;
-        public static async Task<Properties> GetData(string sText)
-        {
-            
-            dynamic results = await DataService.GetDataFromService(sText);
+        public static async Task<Properties> GetData(string sText, string rndSender)
+        {    
+            dynamic results = await DataService.GetDataFromService(sText, rndSender);
             //ask properties from results
             if (results[0] != null)
             {

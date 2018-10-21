@@ -16,19 +16,11 @@ namespace chatbot
 {
     public class DataService
     {
-        private static Random random = new Random();
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-        public static async Task<dynamic> GetDataFromService(string sText)
+        public static async Task<dynamic> GetDataFromService(string sText, string rndSender)
         {
             var payload = new Properties
             {
-                Sender = RandomString(5),
+                Sender = rndSender,
                 Message = sText
             };
             HttpClient client = new HttpClient();
@@ -36,11 +28,10 @@ namespace chatbot
             {
                 payload = new Properties
                 {
-                    Sender = RandomString(5),
+                    Sender = rndSender,
                     Message = "/LASTREQUEST"
                 };
             }
-
             var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(payload));
             var url = "http://10.201.113.130:5007/webhooks/rest/webhook";
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");

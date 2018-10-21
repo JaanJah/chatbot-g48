@@ -19,10 +19,9 @@ namespace chatbot
     {
         public int firstMessage = 0;
         EditText inputText;
+        string rndSender;
         private List<string> convert = new List<string>();
         private List<string> convert2 = new List<string>();
-        // true = human, false = bot response
-        private List<bool> convertSender = new List<bool>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,37 +33,40 @@ namespace chatbot
             //GetDataAndAssignToText();
             if (firstMessage == 0)
             {
+                rndSender = RandomString(5);
                 HiddenFirstMessage();
             }
             sendInputBtn.Click += SendInputBtn_Click;
         }
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         private async void HiddenFirstMessage()
         {
             firstMessage++;
-            //inputText.Text = "hi";
             var sText = "hi";
-            Properties propertyData = await Core.GetData(sText);
+            Properties propertyData = await Core.GetData(sText, rndSender);
             if (propertyData != null)
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
-                convert.Add("");
                 convert2.Add(propertyData.Message);
-                convertSender.Add(false);
                 Properties.ReceivedMessages = convert2.ToArray();
+                convert.Add("");
                 Properties.SentMessages = convert.ToArray();
-                Properties.SenderArray = convertSender.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
             else
             {
                 var list = FindViewById<ListView>(Resource.Id.list);
-                convert.Add("");
                 convert2.Add("Couldn't get property data");
-                convertSender.Add(false);
                 Properties.ReceivedMessages = convert2.ToArray();
+                convert.Add("");
                 Properties.SentMessages = convert.ToArray();
-                Properties.SenderArray = convertSender.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
             inputText.Text = "";
         }
@@ -74,33 +76,18 @@ namespace chatbot
             var message = FindViewById<EditText>(Resource.Id.inputMessage);
             var sText = inputText.Text;
             inputText.Text = "";
-            convert.Add(sText);
-            convert2.Add("");
-            convertSender.Add(true);
-            Properties.SentMessages = convert.ToArray();
-            Properties.ReceivedMessages = convert2.ToArray();
-            Properties.SenderArray = convertSender.ToArray();
-            list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
-            Properties propertyData = await Core.GetData(sText);
+            Properties propertyData = await Core.GetData(sText, rndSender);
             if (propertyData != null)
             {
-                convert.Add("");
                 convert2.Add(propertyData.Message);
-                convertSender.Add(false);
                 Properties.ReceivedMessages = convert2.ToArray();
+                convert.Add(sText);
                 Properties.SentMessages = convert.ToArray();
-                Properties.SenderArray = convertSender.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
+                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
             else
             {
-                convertSender.Add(false);
-                convert2.Add("Couldn't get property data");
-                convert.Add("");
-                Properties.SentMessages = convert.ToArray();
-                Properties.ReceivedMessages = convert2.ToArray();
-                Properties.SenderArray = convertSender.ToArray();
-                list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages, Properties.SenderArray);
+                FindViewById<TextView>(Resource.Id.botMessage).Text = "Couldn't get property data.";
             }
         }
     }
