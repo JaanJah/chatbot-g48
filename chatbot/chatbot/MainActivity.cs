@@ -40,7 +40,7 @@ namespace chatbot
         {
             firstMessage++;
             //inputText.Text = "hi";
-            var sText = "hi123";
+            var sText = "hi";
             Properties propertyData = await Core.GetData(sText);
             if (propertyData != null)
             {
@@ -68,12 +68,17 @@ namespace chatbot
             var message = FindViewById<EditText>(Resource.Id.inputMessage);
             var sText = inputText.Text;
             inputText.Text = "";
+            convert.Add(sText);
+            convert2.Add("");
+            Properties.SentMessages = convert.ToArray();
+            Properties.ReceivedMessages = convert2.ToArray();
+            list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             Properties propertyData = await Core.GetData(sText);
             if (propertyData != null)
             {
+                convert.Add("");
                 convert2.Add(propertyData.Message);
                 Properties.ReceivedMessages = convert2.ToArray();
-                convert.Add(sText);
                 Properties.SentMessages = convert.ToArray();
                 list.Adapter = new ChatAdapter(this, Properties.SentMessages, Properties.ReceivedMessages);
             }
