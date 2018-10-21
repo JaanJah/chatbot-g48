@@ -32,15 +32,17 @@
 		android:id="@+id/linearLayout2" >
 		<EditText
 			android:minWidth="600px"
+			android:maxWidth="600px"
+			android:maxHeight="200px"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="0"
 			android:id="@+id/inputMessage" />
 		<ImageButton
-			android:src="@drawable/nupp2_2"
+			android:src="@drawable/nupp3"
 			android:layout_width="wrap_content"
 			android:gravity="center|right"
 			android:layout_height="wrap_content"
-			android:id="@+id/sendInputBtn" />
+			android:id="@+id/sendInputBtn"/>
 	</LinearLayout>
 </RelativeLayout>
